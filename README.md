@@ -7,6 +7,7 @@
 ```
 cd backend
 npm install
+cp .env.example .env # edit the MONGO_DB_URL according to your database
 ```
 
 ### Start and auto-reload for development
