@@ -1,9 +1,8 @@
 {
   "recommendations": [
-    "octref.vetur",
+    "Vue.volar",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "digitalbrainstem.javascript-ejs-support",
-    "ms-azuretools.vscode-cosmosdb"
+    "mongodb.mongodb-vscode"
   ]
 }

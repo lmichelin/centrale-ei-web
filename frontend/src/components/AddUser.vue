@@ -30,6 +30,7 @@ import axios from "axios";
 
 export default {
   name: "AddUser",
+  emits: ["userAdded"],
   data: function () {
     return {
       user: {

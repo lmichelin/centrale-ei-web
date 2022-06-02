@@ -28,6 +28,7 @@ export default {
   props: {
     users: Array,
   },
+  emits: ["userDeleted"],
   methods: {
     deleteUser: function (userId) {
       axios
