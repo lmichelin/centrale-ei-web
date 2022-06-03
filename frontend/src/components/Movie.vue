@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <p>
-      <img
-        height="400"
-        :src="'https://image.tmdb.org/t/p/original/' + movie.poster_path"
-      />
-    </p>
-    <p>{{ movie.title }}</p>
-    <p>{{ movie.release_date }}</p>
+  <div class="child">
+    <img
+      height="400"
+      :src="'https://image.tmdb.org/t/p/original/' + movie.poster_path"
+    />
+    <h2>{{ movie.title }}</h2>
+    <h3>{{ movie.release_date }}</h3>
   </div>
 </template>
 
@@ -20,7 +18,7 @@ export default {
 </script>
 
 <style scoped>
-.center {
+.child {
   margin-left: auto;
   margin-right: auto;
 }

@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
     <h1>Welcome to Movie Website</h1>
-    <p>
+    <!-- <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
       <a href="https://cli.vuejs.org" target="_blank">vue-cli documentation</a>.
@@ -14,7 +14,7 @@
         type="text"
       />
     </p>
-    <div>Nom du film: {{ movieName }}</div>
+    <div>Nom du film: {{ movieName }}</div> -->
     <div class="parent">
       <tr v-for="movie in movies" :key="movie.id">
         <Movie class="child" :movie="movie" />
@@ -86,13 +86,15 @@ export default {
 
 .parent {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column wrap;
   height: 250px;
 }
 
 .child {
   width: 40%;
   height: 40%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h3 {
