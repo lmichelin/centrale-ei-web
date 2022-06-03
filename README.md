@@ -1,4 +1,4 @@
-# centrale-ei-web
+# EI-web-group3
 
 ## Backend
 
