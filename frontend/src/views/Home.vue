@@ -30,6 +30,7 @@ export default {
   data: function () {
     return {
       query: "",
+      query_lowercase: "",
       movies: [],
       foundMovies: [],
     };
@@ -45,18 +46,19 @@ export default {
         )
         .then((response) => {
           this.movies = response.data.results;
+          this.foundMovies = response.data.results;
         })
         .catch((error) => {
           this.usersLoadingError = "An error occured while fetching movies.";
           console.error(error);
         });
-      this.foundMovies = this.movies.map((x) => x);
     },
     findMovies: function () {
+      this.query_lowercase = this.query.toLowerCase();
       this.foundMovies = [];
       for (const movie of this.movies) {
-        let title = movie.title;
-        if (title.includes(this.query)) {
+        let title = movie.title.toLowerCase();
+        if (title.includes(this.query_lowercase)) {
           this.foundMovies.push(movie);
         }
       }
