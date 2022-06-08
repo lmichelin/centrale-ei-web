@@ -15,7 +15,6 @@
         placeholder="Search..."
       />
     </p>
-    <div class="search">Your search: {{ query }}</div>
     <div class="catalogue">
       <Movie v-for="movie in foundMovies" :movie="movie" />
     </div>
