@@ -16,7 +16,7 @@
       />
     </p>
     <div class="catalogue">
-      <Movie v-for="movie in foundMovies" :movie="movie" />
+      <Movie v-for="movie in foundMovies.slice(0, 21)" :movie="movie" />
     </div>
   </div>
 </template>
