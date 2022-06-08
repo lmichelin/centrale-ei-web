@@ -40,12 +40,12 @@ export default {
   methods: {
     fetchMovies: function () {
       axios
-        .get(
-          "https://api.themoviedb.org/3/discover/movie?api_key=a0a7e40dc8162ed7e37aa2fc97db5654"
-        )
+        .get("http://localhost:3000/movies")
         .then((response) => {
-          this.movies = response.data.results;
-          this.foundMovies = response.data.results;
+          console.log(response.data);
+          this.movies = response.data;
+          this.foundMovies = response.data;
+          console.log(this.movies);
         })
         .catch((error) => {
           this.usersLoadingError = "An error occured while fetching movies.";
