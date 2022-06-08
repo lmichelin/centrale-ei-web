@@ -6,6 +6,9 @@ const MovieSchema = new mongoose.Schema({
   desc: { type: String },
   url: { type: String },
   viewers: [{ type: mongoose.Schema.Types.ObjectId, ref: "UserModel" }],
+}, {
+  toJSON: {virtuals: true},
+  toObject: {virtuals: true}
 });
 
 const MovieModel = mongoose.model("MovieModel", MovieSchema, "movies");

@@ -1,4 +1,5 @@
 const express = require("express");
+const MovieModel = require("../models/movies");
 const UserModel = require("../models/user");
 const router = express.Router();
 
@@ -7,6 +8,12 @@ router.get("/", function (req, res) {
     res.json({ users: users });
   });
 });
+
+router.get("/:id", async function (req, res) {
+  const userId = req.params.id;
+  const allMoviesUser= await MovieModel.find({});
+  res.status(201).json(allMoviesUser)
+})
 
 router.post("/new", function (req, res) {
   const newUser = new UserModel({
