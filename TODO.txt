@@ -1,7 +1,5 @@
 Ajouter 100 films
 
-Finir la recherche de films: Aymeric
-
 Ajouter une page de description par films
 
 Noter des films
