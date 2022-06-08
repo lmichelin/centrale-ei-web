@@ -9,6 +9,12 @@ router.get("/", async function (req, res) {
   res.status(201).json(allMovies);
 });
 
+router.get("/:id", async function (req, res) {
+  const id = req.params.id
+  const movie=await MovieModel.find({_id: id});
+  res.status(201).json(movie)
+})
+
 router.post("/new:viewers", async function (req, res) {
   try {
     const newMovie = new MovieModel({
