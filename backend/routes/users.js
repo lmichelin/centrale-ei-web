@@ -42,4 +42,12 @@ router.delete("/:userId", function (req, res) {
     });
 });
 
+router.get("/:id/movies", async function (req, res) {
+  const userId = req.params.id;
+  const user = await UserModel.findOne({
+    _id: userId,
+  }).populate("watchedMovies");
+  res.status(201).json(user.watchedMovies);
+});
+
 module.exports = router;
