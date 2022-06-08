@@ -31,19 +31,25 @@ export default {
 
 .poster {
   border: 2px solid #fff;
-  margin-bottom: 5 px;
+  margin-bottom: 5px;
   border-radius: 15px;
 }
 .description {
-  background-color: black;
+  background: linear-gradient(rgb(143, 143, 143), #000);
   border: 2px solid #fff;
   border-radius: 15px;
   padding-top: 10px;
   padding-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: calc(100% - 10px);
+  vertical-align: middle;
 }
 .title {
   color: white;
   -webkit-text-stroke: #000;
+  font-weight: bolder;
+  margin-bottom: 5px;
 }
 .date {
   color: white;

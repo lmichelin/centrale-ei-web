@@ -106,11 +106,13 @@ a {
   text-align: center;
   color: white;
 }
+
 .catalogue {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   gap: 25px;
+  padding-bottom: 25px;
 }
 </style>
