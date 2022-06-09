@@ -6,7 +6,7 @@
       width="300"
       class="logo"
     />
-    <h1>MORBVIES</h1>
+    <h1>CSALTO</h1>
     <p>
       <input
         type="text"
@@ -15,11 +15,39 @@
         placeholder="Search..."
       />
     </p>
+    <div class="pageButtons">
+      <button
+        v-for="index in pagesNumber"
+        :key="index"
+        @click="changePage(index)"
+        v-bind:class="{ pageButton: true, activePageButton: index === page }"
+      >
+        {{ index }}
+      </button>
+    </div>
     <div class="catalogue">
-      <Movie v-for="movie in foundMovies.slice(0, 21)" :movie="movie" />
+      <Movie
+        v-for="movie in foundMovies.slice(
+          maxMoviesPerPage * (page - 1),
+          maxMoviesPerPage * page
+        )"
+        :movie="movie"
+        :key="movie.id"
+      />
+    </div>
+    <div class="pageButtons">
+      <button
+        v-for="index in pagesNumber"
+        :key="index"
+        @click="changePage(index)"
+        v-bind:class="{ pageButton: true, activePageButton: index === page }"
+      >
+        {{ index }}
+      </button>
     </div>
   </div>
 </template>
+
 <script>
 import Movie from "@/components/Movie.vue";
 import axios from "axios";
@@ -32,6 +60,10 @@ export default {
       query_lowercase: "",
       movies: [],
       foundMovies: [],
+      page: 1,
+      foundMoviesNumber: 0,
+      maxMoviesPerPage: 21,
+      pagesNumber: 0,
     };
   },
   created() {
@@ -45,7 +77,10 @@ export default {
           console.log(response.data);
           this.movies = response.data;
           this.foundMovies = response.data;
-          console.log(this.movies);
+          this.foundMoviesNumber = this.foundMovies.length;
+          this.pagesNumber = Math.floor(
+            this.foundMoviesNumber / this.maxMoviesPerPage
+          );
         })
         .catch((error) => {
           this.usersLoadingError = "An error occured while fetching movies.";
@@ -61,6 +96,14 @@ export default {
           this.foundMovies.push(movie);
         }
       }
+      this.foundMoviesNumber = this.foundMovies.length;
+      this.page = 1;
+      this.pagesNumber = Math.floor(
+        this.foundMoviesNumber / this.maxMoviesPerPage
+      );
+    },
+    changePage: function (index) {
+      this.page = index;
     },
   },
   mounted: function () {
@@ -74,9 +117,9 @@ export default {
 .home {
   text-align: center;
   background-image: url("../../public/morbius_background.jpg");
-  width: "100%";
   background-position: center top;
   background-size: 100% auto;
+  padding-bottom: 100px;
 }
 
 h3 {
@@ -105,6 +148,25 @@ a {
 .search {
   text-align: center;
   color: white;
+}
+
+.pageButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50px;
+}
+
+.pageButton {
+  height: 30px;
+  width: 30px;
+  border-radius: 10px;
+  background-color: blue;
+  color: white;
+}
+
+.activePageButton {
+  background-color: red;
 }
 
 .catalogue {

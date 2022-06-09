@@ -1,13 +1,13 @@
 <template>
   <router-link :to="'/movies/' + movie.id_" class="movie">
     <img
-      :src="'https://image.tmdb.org/t/p/original' + movie.poster_path"
+      :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
       width="230"
       class="poster"
     />
     <div class="description">
       <div class="title">{{ movie.title }}</div>
-      <div class="date">Released {{ movie.release_date }}</div>
+      <div class="date">{{ movie.release_date }}</div>
     </div>
   </router-link>
 </template>
