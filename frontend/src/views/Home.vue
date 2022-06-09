@@ -1,4 +1,5 @@
 <template>
+  <Navbar :userId="userId"></Navbar>
   <div class="home">
     <img
       alt="Morbin"
@@ -32,6 +33,7 @@
           maxMoviesPerPage * page
         )"
         :movie="movie"
+        :userId="userId"
         :key="movie.id"
       />
     </div>
@@ -49,11 +51,12 @@
 </template>
 
 <script>
+import Navbar from "@/components/Navbar.vue";
 import Movie from "@/components/Movie.vue";
 import axios from "axios";
 export default {
   name: "Home",
-  components: { Movie },
+  components: { Navbar, Movie },
   data: function () {
     return {
       query: "",
@@ -64,10 +67,8 @@ export default {
       foundMoviesNumber: 0,
       maxMoviesPerPage: 21,
       pagesNumber: 0,
+      userId: "",
     };
-  },
-  created() {
-    console.log("Hello World");
   },
   methods: {
     fetchMovies: function () {
@@ -105,6 +106,13 @@ export default {
     changePage: function (index) {
       this.page = index;
     },
+  },
+  created: function () {
+    try {
+      this.userId = this.$route.params.userId;
+    } catch {
+      this.userId = "";
+    }
   },
   mounted: function () {
     this.fetchMovies();

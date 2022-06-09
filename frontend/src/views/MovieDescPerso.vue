@@ -1,4 +1,5 @@
 <template>
+  <Navbar :userId="userId"></Navbar>
   <div class="movie">
     <img
       :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
@@ -52,14 +53,13 @@
         class="visuallyhidden"
       /><label for="star1" title="Really bad">★</label>
     </div>
-    https://automatants.cs-campus.fr/formations
   </div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
-  name: "MovieDescRating",
+  name: "MovieDesc",
   data: function () {
     return {
       movie: {},
@@ -68,7 +68,7 @@ export default {
   methods: {
     fetchTheMovie: function () {
       axios
-        .get(`http://localhost:3000/movies/${this.$route.params.id}`)
+        .get(`http://localhost:3000/movies/${this.$route.params.movieId}`)
         .then((response) => {
           this.movie = response.data[0];
         })
@@ -134,8 +134,11 @@ export default {
   margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  background: #2c3e50;
-  padding: 20px 50px 20px 20px;
+  background: linear-gradient(#000, rgb(143, 143, 143));
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 15px;
+  border: 2px solid white;
 }
 
 .product-review-stars label {

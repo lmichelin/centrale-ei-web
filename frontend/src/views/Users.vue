@@ -1,4 +1,5 @@
 <template>
+  <Navbar :userId="userId"></Navbar>
   <h1>Users</h1>
   <AddUser @userAdded="fetchUsers()" />
   <UsersTable v-if="users.length" :users="users" @userDeleted="fetchUsers()" />
@@ -7,6 +8,7 @@
 
 <script>
 // @ is an alias to /src
+import Navbar from "@/components/Navbar.vue";
 import UsersTable from "@/components/UsersTable.vue";
 import AddUser from "@/components/AddUser.vue";
 import axios from "axios";
@@ -16,11 +18,13 @@ export default {
   components: {
     AddUser,
     UsersTable,
+    Navbar,
   },
   data: function () {
     return {
       users: [],
       usersLoadingError: "",
+      userId: "",
     };
   },
   methods: {
@@ -35,6 +39,13 @@ export default {
           console.error(error);
         });
     },
+  },
+  created: function () {
+    try {
+      this.userId = this.$route.params.userId;
+    } catch {
+      this.userId = "";
+    }
   },
   mounted: function () {
     this.fetchUsers();
