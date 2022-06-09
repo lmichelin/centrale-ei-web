@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="'/movies/' + movie.id_" class="movie">
+  <router-link :to="'/movies/' + movie.id" class="movie">
     <img
       :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
       width="230"
@@ -21,7 +21,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .movie {
   text-decoration: none;
   margin-top: 25px;
