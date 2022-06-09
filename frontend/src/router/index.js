@@ -3,7 +3,7 @@ import Home from "../views/Home.vue";
 import Counter from "../views/Counter.vue";
 import Users from "../views/Users.vue";
 import About from "../views/About.vue";
-import MovieDesc from "../views/MovieDesc.vue"
+import MovieDesc from "../views/MovieDesc.vue";
 
 const routes = [
   {
@@ -27,7 +27,7 @@ const routes = [
     component: About,
   },
   {
-    path: "/movie/:id",
+    path: "/movies/:movieId",
     name: "MovieDesc",
     component: MovieDesc,
   },

@@ -15,6 +15,11 @@
             Delete
           </button>
         </td>
+        <td>
+          <button class="connect-button" @click="connect(user._id)">
+            Connect
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -41,6 +46,7 @@ export default {
           console.error(error);
         });
     },
+    connect: function (userId) {},
   },
 };
 </script>

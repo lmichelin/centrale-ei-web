@@ -52,13 +52,14 @@
         class="visuallyhidden"
       /><label for="star1" title="Really bad">★</label>
     </div>
+    https://automatants.cs-campus.fr/formations
   </div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
-  name: "MovieDesc",
+  name: "MovieDescRating",
   data: function () {
     return {
       movie: {},
@@ -67,7 +68,7 @@ export default {
   methods: {
     fetchTheMovie: function () {
       axios
-        .get(`http://localhost:3000/movies/${this.$route.params.movieId}`)
+        .get(`http://localhost:3000/movies/${this.$route.params.id}`)
         .then((response) => {
           this.movie = response.data[0];
         })
@@ -133,11 +134,8 @@ export default {
   margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  background: linear-gradient(#000, rgb(143, 143, 143));
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-radius: 15px;
-  border: 2px solid white;
+  background: #2c3e50;
+  padding: 20px 50px 20px 20px;
 }
 
 .product-review-stars label {
