@@ -2,12 +2,16 @@
   <Navbar :userId="userId"></Navbar>
   <h1>Users</h1>
   <AddUser @userAdded="fetchUsers()" />
-  <UsersTable v-if="users.length" :users="users" @userDeleted="fetchUsers()" />
+  <UsersTable
+    v-if="users.length"
+    :users="users"
+    @userDeleted="fetchUsers()"
+    :userId="userId"
+  />
   <div v-if="usersLoadingError">{{ usersLoadingError }}</div>
 </template>
 
 <script>
-// @ is an alias to /src
 import Navbar from "@/components/Navbar.vue";
 import UsersTable from "@/components/UsersTable.vue";
 import AddUser from "@/components/AddUser.vue";

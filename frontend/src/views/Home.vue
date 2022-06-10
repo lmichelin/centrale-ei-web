@@ -1,19 +1,14 @@
 <template>
   <Navbar :userId="userId"></Navbar>
   <div class="home">
-    <img
-      alt="Morbin"
-      src="https://d1fmx1rbmqrxrr.cloudfront.net/cnet/optim/i/edit/2022/01/Morbius%202022%20Big__w1200.jpg"
-      width="300"
-      class="logo"
-    />
-    <h1>CSALTO</h1>
+    <img alt="logo" src="http://localhost:8080/csalto_white.png" class="logo" />
     <p>
       <input
         type="text"
         v-model="query"
         v-on:input="findMovies"
         placeholder="Search..."
+        class="search"
       />
     </p>
     <div class="pageButtons">
@@ -149,13 +144,14 @@ a {
 }
 
 .logo {
-  border: 1px solid #fff;
-  margin-top: 25px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 600px;
 }
 
 .search {
   text-align: center;
-  color: white;
+  margin-bottom: 30px;
 }
 
 .pageButtons {
@@ -169,7 +165,7 @@ a {
   height: 30px;
   width: 30px;
   border-radius: 10px;
-  background-color: blue;
+  background-color: black;
   color: white;
 }
 
