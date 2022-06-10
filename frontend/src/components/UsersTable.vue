@@ -56,7 +56,6 @@ export default {
     },
     connect: function (userId) {
       this.$router.push("/home/" + userId);
-      this.$router.go();
     },
     disconnect: function () {
       this.$router.push("/home/");

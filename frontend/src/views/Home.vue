@@ -119,9 +119,7 @@ export default {
 <style scoped>
 .home {
   text-align: center;
-  background-image: url("../../public/morbius_background.jpg");
-  background-position: center top;
-  background-size: 100% auto;
+  background-image: url("../../public/background.webp");
   padding-bottom: 100px;
 }
 

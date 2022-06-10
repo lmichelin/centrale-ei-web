@@ -61,10 +61,10 @@ export default {
 
 <style scoped>
 .users {
+  background-image: url("../../public/background.webp");
   margin-left: auto;
   margin-right: auto;
   align-content: center;
-  background-color: black;
   margin-bottom: 150px;
   text-align: center;
 }

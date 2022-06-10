@@ -73,7 +73,6 @@ export default {
   margin-left: auto;
   margin-right: auto;
   align-content: center;
-  background-color: black;
   text-align: center;
   display: flex;
 }

@@ -37,20 +37,24 @@ router.get("/movies/:movieId", async function (req, res) {
   }
 });
 
-router.post("/new/:movieId/:userId", function (req, res) {
-  const newNote = NoteModel.find({
-    user: req.params.userId,
-    movie: req.params.movieId,
-    note: req.body.note,
-  });
-  newNote
-    .save()
-    .then(function (newDocument) {
-      res.status(201).json(newDocument);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+router.put("/new/:movieId/:userId/:note", async function (req, res) {
+  try {
+    const newNote = await NoteModel.findOneAndUpdate(
+      {
+        user: req.params.userId,
+        movie: req.params.movieId,
+      },
+      {
+        user: req.params.userId,
+        movie: req.params.movieId,
+        note: req.params.note,
+      },
+      { new: true, upsert: true }
+    );
+    res.status(201).json(newNote);
+  } catch {
+    res.status(500).json({ message: "Could not add the note" });
+  }
 });
 
 module.exports = router;

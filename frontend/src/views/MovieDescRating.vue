@@ -23,6 +23,7 @@
         name="rating"
         value="5"
         class="visuallyhidden"
+        :v-model="rating"
       /><label for="star5" title="Amazing">★</label>
       <input
         type="radio"
@@ -30,6 +31,7 @@
         name="rating"
         value="4"
         class="visuallyhidden"
+        :v-model="rating"
       /><label for="star4" title="Pretty good">★</label>
       <input
         type="radio"
@@ -37,6 +39,7 @@
         name="rating"
         value="3"
         class="visuallyhidden"
+        :v-model="rating"
       /><label for="star3" title="Meh">★</label>
       <input
         type="radio"
@@ -44,6 +47,7 @@
         name="rating"
         value="2"
         class="visuallyhidden"
+        :v-model="rating"
       /><label for="star2" title="Kinda bad">★</label>
       <input
         type="radio"
@@ -51,6 +55,7 @@
         name="rating"
         value="1"
         class="visuallyhidden"
+        :v-model="rating"
       /><label for="star1" title="Really bad">★</label>
     </div>
   </div>
@@ -65,6 +70,7 @@ export default {
   data: function () {
     return {
       movie: {},
+      rating: 0,
     };
   },
   methods: {
@@ -79,19 +85,42 @@ export default {
           console.error(error);
         });
     },
-    fetchRating: function () {},
+    updateRating: function () {},
+  },
+  watch: {
+    rating: async function (newNote) {
+      const response = await axios.put(
+        "http://localhost:3000/notation/new/" +
+          this.movieId +
+          "/" +
+          this.userId,
+        +"/" + newNote
+      );
+      return response.data.results;
+    },
+  },
+  created: function () {
+    try {
+      this.userId = this.$route.params.userId;
+    } catch {
+      this.userId = "";
+    }
   },
   mounted: function () {
-    console.log(this.$route);
     this.fetchTheMovie();
+    try {
+      // request get/:movieId/:userId, update this.rating
+    } catch {
+      //rien
+    }
   },
 };
 </script>
 
 <style scoped>
 .movie {
+  background-image: url("../../public/background.webp");
   text-align: center;
-  background-color: black;
   padding-top: 50px;
   padding-bottom: 50px;
   color: white;
