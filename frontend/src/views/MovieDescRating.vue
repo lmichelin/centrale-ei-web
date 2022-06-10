@@ -1,4 +1,5 @@
 <template>
+  <Navbar :userId="userId"></Navbar>
   <div class="movie">
     <img
       :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
@@ -22,6 +23,7 @@
         name="rating"
         value="5"
         class="visuallyhidden"
+        :v-model="rating"
       /><label for="star5" title="Amazing">★</label>
       <input
         type="radio"
@@ -29,6 +31,7 @@
         name="rating"
         value="4"
         class="visuallyhidden"
+        :v-model="rating"
       /><label for="star4" title="Pretty good">★</label>
       <input
         type="radio"
@@ -36,6 +39,7 @@
         name="rating"
         value="3"
         class="visuallyhidden"
+        :v-model="rating"
       /><label for="star3" title="Meh">★</label>
       <input
         type="radio"
@@ -43,6 +47,7 @@
         name="rating"
         value="2"
         class="visuallyhidden"
+        :v-model="rating"
       /><label for="star2" title="Kinda bad">★</label>
       <input
         type="radio"
@@ -50,25 +55,28 @@
         name="rating"
         value="1"
         class="visuallyhidden"
+        :v-model="rating"
       /><label for="star1" title="Really bad">★</label>
     </div>
-    https://automatants.cs-campus.fr/formations
   </div>
 </template>
 
 <script>
+import Navbar from "@/components/Navbar.vue";
 import axios from "axios";
 export default {
-  name: "MovieDescRating",
+  name: "MovieDesc",
+  components: { Navbar },
   data: function () {
     return {
       movie: {},
+      rating: 0,
     };
   },
   methods: {
     fetchTheMovie: function () {
       axios
-        .get(`http://localhost:3000/movies/${this.$route.params.id}`)
+        .get(`http://localhost:3000/movies/${this.$route.params.movieId}`)
         .then((response) => {
           this.movie = response.data[0];
         })
@@ -77,18 +85,42 @@ export default {
           console.error(error);
         });
     },
+    updateRating: function () {},
+  },
+  watch: {
+    rating: async function (newNote) {
+      const response = await axios.put(
+        "http://localhost:3000/notation/new/" +
+          this.movieId +
+          "/" +
+          this.userId,
+        +"/" + newNote
+      );
+      return response.data.results;
+    },
+  },
+  created: function () {
+    try {
+      this.userId = this.$route.params.userId;
+    } catch {
+      this.userId = "";
+    }
   },
   mounted: function () {
-    console.log(this.$route);
     this.fetchTheMovie();
+    try {
+      // request get/:movieId/:userId, update this.rating
+    } catch {
+      //rien
+    }
   },
 };
 </script>
 
 <style scoped>
 .movie {
+  background-image: url("../../public/background.webp");
   text-align: center;
-  background-color: black;
   padding-top: 50px;
   padding-bottom: 50px;
   color: white;
@@ -134,8 +166,11 @@ export default {
   margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  background: #2c3e50;
-  padding: 20px 50px 20px 20px;
+  background: linear-gradient(#000, rgb(143, 143, 143));
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 15px;
+  border: 2px solid white;
 }
 
 .product-review-stars label {

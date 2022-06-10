@@ -3,7 +3,7 @@
     <thead>
       <th>Email</th>
       <th>First name</th>
-      <th>Lirst name</th>
+      <th>Last name</th>
     </thead>
     <tbody>
       <tr v-for="user in users" :key="user.email">
@@ -16,8 +16,15 @@
           </button>
         </td>
         <td>
-          <button class="connect-button" @click="connect(user._id)">
+          <button
+            v-if="user._id != userId"
+            class="connect-button"
+            @click="connect(user._id)"
+          >
             Connect
+          </button>
+          <button v-else class="disconnect-button" @click="disconnect()">
+            Disconnect
           </button>
         </td>
       </tr>
@@ -32,6 +39,7 @@ export default {
   name: "UsersTable",
   props: {
     users: Array,
+    userId: String,
   },
   emits: ["userDeleted"],
   methods: {
@@ -46,7 +54,12 @@ export default {
           console.error(error);
         });
     },
-    connect: function (userId) {},
+    connect: function (userId) {
+      this.$router.push("/home/" + userId);
+    },
+    disconnect: function () {
+      this.$router.push("/home/");
+    },
   },
 };
 </script>
@@ -54,14 +67,21 @@ export default {
 <style scoped>
 table {
   border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  margin-bottom: 50px;
 }
 
 th,
 td {
   border: 1px solid #000000;
   padding: 10px;
+  text-align: center;
 }
-
+.connect-button {
+  cursor: pointer;
+}
 .delete-button {
   cursor: pointer;
 }
