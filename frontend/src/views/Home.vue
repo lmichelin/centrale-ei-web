@@ -167,6 +167,7 @@ a {
   border-radius: 10px;
   background-color: black;
   color: white;
+  cursor: pointer;
 }
 
 .activePageButton {

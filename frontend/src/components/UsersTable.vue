@@ -16,16 +16,16 @@
           </button>
         </td>
         <td>
-          <router-link
+          <button
             v-if="user._id != userId"
             class="connect-button"
-            :to="'/users/' + user.id"
+            @click="connect(user._id)"
           >
-            <button>Connect</button>
-          </router-link>
-          <router-link v-else class="disconnect-button" to="/users">
-            <button>Disconnect</button>
-          </router-link>
+            Connect
+          </button>
+          <button v-else class="disconnect-button" @click="disconnect()">
+            Disconnect
+          </button>
         </td>
       </tr>
     </tbody>
@@ -54,6 +54,13 @@ export default {
           console.error(error);
         });
     },
+    connect: function (userId) {
+      this.$router.push("/home/" + userId);
+      this.$router.go();
+    },
+    disconnect: function () {
+      this.$router.push("/home/");
+    },
   },
 };
 </script>
@@ -61,6 +68,10 @@ export default {
 <style scoped>
 table {
   border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  margin-bottom: 50px;
 }
 
 th,

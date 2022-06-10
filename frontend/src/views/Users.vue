@@ -1,14 +1,16 @@
 <template>
   <Navbar :userId="userId"></Navbar>
-  <h1>Users</h1>
-  <AddUser @userAdded="fetchUsers()" />
-  <UsersTable
-    v-if="users.length"
-    :users="users"
-    @userDeleted="fetchUsers()"
-    :userId="userId"
-  />
-  <div v-if="usersLoadingError">{{ usersLoadingError }}</div>
+  <div class="users">
+    <img alt="logo" src="http://localhost:8080/csalto_white.png" class="logo" />
+    <AddUser @userAdded="fetchUsers()" />
+    <UsersTable
+      v-if="users.length"
+      :users="users"
+      @userDeleted="fetchUsers()"
+      :userId="userId"
+    />
+    <div v-if="usersLoadingError">{{ usersLoadingError }}</div>
+  </div>
 </template>
 
 <script>
@@ -56,3 +58,21 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.users {
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+  background-color: black;
+  margin-bottom: 150px;
+  text-align: center;
+}
+.logo {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
