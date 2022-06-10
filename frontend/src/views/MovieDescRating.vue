@@ -57,9 +57,11 @@
 </template>
 
 <script>
+import Navbar from "@/components/Navbar.vue";
 import axios from "axios";
 export default {
   name: "MovieDesc",
+  components: { Navbar },
   data: function () {
     return {
       movie: {},
@@ -77,6 +79,7 @@ export default {
           console.error(error);
         });
     },
+    fetchRating: function () {},
   },
   mounted: function () {
     console.log(this.$route);

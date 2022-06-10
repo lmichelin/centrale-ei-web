@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Users from "../views/Users.vue";
 import MovieDesc from "../views/MovieDesc.vue";
-import MovieDescPerso from "../views/MovieDescPerso.vue";
+import MovieDescRating from "../views/MovieDescRating.vue";
 
 const routes = [
   {
@@ -32,8 +32,8 @@ const routes = [
   },
   {
     path: "/movies/:movieId/:userId",
-    name: "MovieDescPerso",
-    component: MovieDescPerso,
+    name: "MovieDescRating",
+    component: MovieDescRating,
   },
 ];
 
